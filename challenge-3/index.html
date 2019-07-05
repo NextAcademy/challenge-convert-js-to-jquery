@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gallery</title>
+    <style type="text/css">
+      #image {
+        opacity: 1;
+        transition-property: opacity;
+        transition-duration: 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="image" />
+    <script type="text/javascript">
+      const images = [
+        'https://placeimg.com/640/480/any',
+        'https://placeimg.com/640/480/fish'
+      ]
+      const shownImage = document.getElementById('image')
+
+      let counter = 0
+      let giveImage = () => {
+        if (counter < images.length) {
+          const image = images[counter]
+          counter++
+          return image
+        } else {
+          const image = images[0]
+          counter = 1
+          return image
+        }
+      }
+      shownImage.src = giveImage()
+
+      setInterval(() => {
+        shownImage.style.opacity = '0'
+        setTimeout(() => {
+          shownImage.src = giveImage()
+          shownImage.style.opacity = '1'
+        }, 500)
+      }, 1500)
+    </script>
+  </body>
+</html>
